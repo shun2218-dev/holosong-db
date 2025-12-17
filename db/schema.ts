@@ -1,11 +1,11 @@
 import { relations } from "drizzle-orm";
 import {
+	date,
 	pgTable,
+	primaryKey,
 	text,
 	timestamp,
 	uuid,
-	date,
-	primaryKey,
 } from "drizzle-orm/pg-core";
 
 // --- タレント情報 ---

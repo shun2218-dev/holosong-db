@@ -1,7 +1,7 @@
-import { db } from "@/db";
-import { talents } from "@/db/schema";
 import Image from "next/image";
 import Link from "next/link";
+import { db } from "@/db";
+import { talents } from "@/db/schema";
 
 export default async function TalentsPage() {
 	const allTalents = await db.select().from(talents);

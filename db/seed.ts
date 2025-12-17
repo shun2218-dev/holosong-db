@@ -1,5 +1,5 @@
 import { db } from "./index";
-import { talents, songs, songTalents } from "./schema";
+import { songs, songTalents, talents } from "./schema";
 
 async function main() {
 	console.log("🌱 Seeding start...");

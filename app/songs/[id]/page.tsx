@@ -1,10 +1,10 @@
-import { db } from "@/db";
-import { songs } from "@/db/schema";
 import { eq } from "drizzle-orm";
-import { getYoutubeId } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { db } from "@/db";
+import { songs } from "@/db/schema";
+import { getYoutubeId } from "@/lib/utils";
 
 interface PageProps {
 	params: Promise<{ id: string }>; // Next.js 15/16ではparamsはPromise型になります

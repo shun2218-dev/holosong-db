@@ -1,9 +1,9 @@
-import { db } from "@/db";
-import { talents } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { db } from "@/db";
+import { talents } from "@/db/schema";
 
 interface PageProps {
 	params: Promise<{ id: string }>;

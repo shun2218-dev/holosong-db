@@ -1,6 +1,6 @@
 "use client";
 
-import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils"; // 前回のSTEPで作った関数
 
 export function FilterTabs() {

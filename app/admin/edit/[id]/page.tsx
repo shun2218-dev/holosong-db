@@ -1,9 +1,9 @@
+import { eq } from "drizzle-orm";
+import Image from "next/image";
+import { notFound } from "next/navigation";
 import { db } from "@/db";
 import { songs, talents } from "@/db/schema";
-import { eq } from "drizzle-orm";
 import { updateSong } from "../../actions"; // actionsからインポート
-import { notFound } from "next/navigation";
-import Image from "next/image";
 
 interface PageProps {
 	params: Promise<{ id: string }>;

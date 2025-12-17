@@ -1,4 +1,4 @@
-import { clsx, type ClassValue } from "clsx";
+import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
 // Tailwindのクラス結合用（将来的にshadcn/uiなどを使う場合にも役立ちます）

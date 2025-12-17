@@ -1,9 +1,9 @@
-import { db } from "@/db";
-import { songs, talents } from "@/db/schema";
-import { addNewSong, deleteSong } from "./actions";
 import { desc } from "drizzle-orm";
 import Image from "next/image";
 import Link from "next/link";
+import { db } from "@/db";
+import { songs, talents } from "@/db/schema";
+import { addNewSong, deleteSong } from "./actions";
 
 export default async function AdminPage() {
 	// タレント一覧を取得（セレクトボックス用）
