@@ -3,6 +3,7 @@
 import { db } from "@/db";
 import { songs, songTalents } from "@/db/schema";
 import { put } from "@vercel/blob"; // Vercel Blob用
+import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -45,4 +46,63 @@ export async function addNewSong(formData: FormData) {
   // 4. キャッシュを更新してトップページへ戻る
   revalidatePath("/");
   redirect("/");
+}
+
+// 楽曲の削除
+export async function deleteSong(songId: string) {
+  // カスケード削除を設定しているため、songsを消せば中間テーブルも自動で消えます
+  await db.delete(songs).where(eq(songs.id, songId));
+  
+  revalidatePath("/");
+  revalidatePath("/admin");
+}
+
+// 楽曲の更新
+type UpdateData = {
+  title: string;
+  youtubeUrl: string;
+  releaseDate: string;
+  jacketUrl?: string; 
+};
+
+export async function updateSong(formData: FormData) {
+  const songId = formData.get("id") as string;
+  const title = formData.get("title") as string;
+  const youtubeUrl = formData.get("youtubeUrl") as string;
+  const releaseDate = formData.get("releaseDate") as string;
+  const talentIds = formData.getAll("talentIds") as string[];
+  const imageFile = formData.get("jacketImage") as File;
+
+  // 更新データオブジェクトの作成
+  const updateData: UpdateData = {
+    title,
+    youtubeUrl,
+    releaseDate,
+  };
+
+  // 新しい画像がアップロードされた場合のみ画像を更新
+  if (imageFile && imageFile.size > 0) {
+    const blob = await put(imageFile.name, imageFile, { access: 'public' });
+    updateData.jacketUrl = blob.url;
+  }
+
+  // 1. 基本情報の更新
+  await db.update(songs).set(updateData).where(eq(songs.id, songId));
+
+  // 2. タレント紐付けの更新 (一旦全削除して再登録が一番シンプル)
+  // トランザクションを使うのが理想ですが、今回はシンプルに実装します
+  await db.delete(songTalents).where(eq(songTalents.songId, songId));
+  
+  if (talentIds.length > 0) {
+    await db.insert(songTalents).values(
+      talentIds.map((talentId) => ({
+        songId: songId,
+        talentId: talentId,
+      }))
+    );
+  }
+
+  revalidatePath("/");
+  revalidatePath(`/songs/${songId}`);
+  redirect("/admin");
 }
