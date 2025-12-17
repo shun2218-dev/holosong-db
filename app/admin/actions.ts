@@ -86,21 +86,26 @@ export async function updateSong(formData: FormData) {
     updateData.jacketUrl = blob.url;
   }
 
-  // 1. 基本情報の更新
-  await db.update(songs).set(updateData).where(eq(songs.id, songId));
+  // トランザクションで更新処理を実行
+  await db.transaction(async (tx) => {
+    
+    // 1. 基本情報の更新 (注意: ここでは db ではなく tx を使う)
+    await tx.update(songs).set(updateData).where(eq(songs.id, songId));
 
-  // 2. タレント紐付けの更新 (一旦全削除して再登録が一番シンプル)
-  // トランザクションを使うのが理想ですが、今回はシンプルに実装します
-  await db.delete(songTalents).where(eq(songTalents.songId, songId));
-  
-  if (talentIds.length > 0) {
-    await db.insert(songTalents).values(
-      talentIds.map((talentId) => ({
-        songId: songId,
-        talentId: talentId,
-      }))
-    );
-  }
+    // 2. タレント紐付けの更新
+    // まず既存の紐付けを削除
+    await tx.delete(songTalents).where(eq(songTalents.songId, songId));
+    
+    // 新しい紐付けがあれば登録
+    if (talentIds.length > 0) {
+      await tx.insert(songTalents).values(
+        talentIds.map((talentId) => ({
+          songId: songId,
+          talentId: talentId,
+        }))
+      );
+    }
+  });
 
   revalidatePath("/");
   revalidatePath(`/songs/${songId}`);
