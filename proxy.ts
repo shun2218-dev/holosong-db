@@ -4,7 +4,7 @@ export const config = {
   matcher: ["/admin/:path*"], // /admin 以下の全ルートに適用
 };
 
-export function middleware(req: NextRequest) {
+export function proxy(req: NextRequest) {
   const basicAuth = req.headers.get("authorization");
 
   if (basicAuth) {
