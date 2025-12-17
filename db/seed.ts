@@ -13,13 +13,13 @@ async function main() {
   const [suisei] = await db.insert(talents).values({
     name: '星街すいせい',
     generation: '0期生',
-    imageUrl: 'https://hololive.hololivepro.com/wp-content/uploads/2023/04/Hoshimachi-Suisei_list_thumb.png', // 公式画像の例（後でBlobに置き換えます）
+    imageUrl: 'https://hololive.hololivepro.com/wp-content/uploads/2020/06/Hoshimachi-Suisei_list_thumb.png',
   }).returning();
 
   const [marine] = await db.insert(talents).values({
     name: '宝鐘マリン',
     generation: '3期生',
-    imageUrl: 'https://hololive.hololivepro.com/wp-content/uploads/2023/04/Houshou-Marine_list_thumb.png',
+    imageUrl: 'https://hololive.hololivepro.com/wp-content/uploads/2020/06/Houshou-Marine_list_thumb.png',
   }).returning();
 
   console.log('✨ Talents created');
