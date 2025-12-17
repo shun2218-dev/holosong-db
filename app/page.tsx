@@ -2,6 +2,7 @@ import { db } from "@/db";
 import { songs } from "@/db/schema";
 import { desc } from "drizzle-orm";
 import Image from "next/image";
+import Link from "next/link";
 
 export default async function Home() {
   // 楽曲データを取得 (タレント情報も一緒に取得)
@@ -24,15 +25,19 @@ export default async function Home() {
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {allSongs.map((song) => (
-          <div key={song.id} className="bg-white rounded-lg shadow p-4 border border-gray-100">
-            {/* ジャケット画像 (なければプレースホルダー) */}
+          <Link
+            href={`/songs/${song.id}`} 
+            key={song.id} 
+            className="group block bg-white rounded-lg shadow p-4 border border-gray-100 hover:shadow-md transition-shadow"
+          >
+            {/* ジャケット画像 */}
             <div className="relative aspect-video w-full bg-gray-200 rounded-md mb-4 overflow-hidden">
                 {song.jacketUrl ? (
                   <Image 
                     src={song.jacketUrl} 
                     alt={song.title} 
                     fill 
-                    className="object-cover"
+                    className="object-cover group-hover:scale-105 transition-transform duration-300" // ホバー時に拡大エフェクト
                   />
                 ) : (
                   <div className="flex items-center justify-center h-full text-gray-400">No Image</div>
@@ -51,7 +56,7 @@ export default async function Home() {
                 </span>
               ))}
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

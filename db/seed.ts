@@ -36,7 +36,7 @@ async function main() {
     title: '美少女無罪♡パイレーツ',
     releaseDate: '2023-07-30',
     type: 'original',
-    youtubeUrl: 'https://www.youtube.com/watch?v=KQPpwCs8fH4',
+    youtubeUrl: 'https://www.youtube.com/watch?v=KfZR9jVP6tw',
   }).returning();
 
   console.log('🎵 Songs created');
