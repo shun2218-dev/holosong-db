@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "biome lint --write .",
+    "format": "biome format --write .",
+    "fix": "biome check --write .",
     "db:seed": "tsx db/seed.ts"
   },
   "dependencies": {
@@ -14,23 +16,26 @@
     "@vercel/blob": "^2.0.0",
     "clsx": "^2.1.1",
     "drizzle-orm": "^0.45.1",
-    "next": "14.2.16",
-    "react": "^18",
-    "react-dom": "^18",
+    "next": "16.0.10",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
     "tailwind-merge": "^3.4.0",
     "use-debounce": "^10.0.6"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.3.10",
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
     "dotenv": "^17.2.3",
     "drizzle-kit": "^0.31.8",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.16",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "tsx": "^4.21.0",
     "typescript": "^5"
+  },
+  "overrides": {
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3"
   }
 }
