@@ -96,9 +96,13 @@ export default async function Home({ searchParams }: SearchParamsProps) {
               {/* 参加タレント */}
               <div className="flex flex-wrap gap-2">
                 {song.talents.map(({ talent }) => (
-                  <span key={talent.id} className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
-                    {talent.name}
-                  </span>
+                  <object key={talent.id}>
+                    <Link href={`/talents/${talent.id}`}
+                      className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full hover:bg-blue-200 transition-colors block"
+                    >                    
+                      {talent.name}
+                    </Link>
+                  </object>
                 ))}
               </div>
             </Link>

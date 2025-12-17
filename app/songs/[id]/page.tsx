@@ -47,7 +47,6 @@ export default async function SongDetailPage({ params }: PageProps) {
               height="100%"
               src={`https://www.youtube.com/embed/${youtubeId}`}
               title="YouTube video player"
-              frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             ></iframe>
@@ -93,7 +92,11 @@ export default async function SongDetailPage({ params }: PageProps) {
             </h3>
             <div className="flex flex-wrap gap-4">
               {song.talents.map(({ talent }) => (
-                <div key={talent.id} className="flex items-center gap-3 bg-gray-50 px-4 py-2 rounded-lg border border-gray-100">
+                <Link
+                  href={`/talents/${talent.id}`}
+                  key={talent.id}
+                  className="flex items-center gap-3 bg-gray-50 px-4 py-2 rounded-lg border border-gray-100 hover:bg-blue-50 hover:border-blue-200 transition-colors"
+                >
                   {talent.imageUrl ? (
                     <div className="relative w-10 h-10 rounded-full overflow-hidden bg-gray-200">
                       <Image src={talent.imageUrl} alt={talent.name} fill className="object-cover" />
@@ -105,7 +108,7 @@ export default async function SongDetailPage({ params }: PageProps) {
                     <p className="font-bold text-sm text-gray-900">{talent.name}</p>
                     <p className="text-xs text-gray-500">{talent.generation}</p>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
