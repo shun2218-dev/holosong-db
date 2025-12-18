@@ -112,7 +112,7 @@ export default async function SongDetailPage({ params }: PageProps) {
 										<div className="relative w-10 h-10 rounded-full overflow-hidden bg-gray-200">
 											<Image
 												src={talent.imageUrl}
-												alt={talent.name}
+												alt={talent.displayName}
 												fill
 												className="object-cover"
 											/>
@@ -122,7 +122,7 @@ export default async function SongDetailPage({ params }: PageProps) {
 									)}
 									<div>
 										<p className="font-bold text-sm text-gray-900">
-											{talent.name}
+											{talent.displayName}
 										</p>
 										<p className="text-xs text-gray-500">{talent.generation}</p>
 									</div>

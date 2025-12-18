@@ -16,6 +16,20 @@ export default async function AdminPage() {
 
 	return (
 		<div className="max-w-4xl mx-auto py-10">
+			<div className="flex gap-4 mb-8">
+				<Link
+					href="/admin/import"
+					className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors"
+				>
+					📤 楽曲データ一括インポート
+				</Link>
+				<Link
+					href="/admin/talents/import"
+					className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition-colors"
+				>
+					👤 タレント クイック登録
+				</Link>
+			</div>
 			<div className="grid md:grid-cols-2 gap-10">
 				{/* 左側：新規登録フォーム */}
 				<div>
@@ -87,7 +101,7 @@ export default async function AdminPage() {
 							>
 								{allTalents.map((t) => (
 									<option key={t.id} value={t.id}>
-										{t.name} ({t.generation})
+										{t.displayName} ({t.generation})
 									</option>
 								))}
 							</select>

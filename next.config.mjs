@@ -10,6 +10,10 @@ const nextConfig = {
 				protocol: "https",
 				hostname: "*.public.blob.vercel-storage.com", // Vercel Storage for user uploaded images
 			},
+			{
+				protocol: "https",
+				hostname: "img.youtube.com", // YouTube jacket image url
+			},
 		],
 	},
 };

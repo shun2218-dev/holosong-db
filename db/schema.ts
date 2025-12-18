@@ -1,20 +1,28 @@
 import { relations } from "drizzle-orm";
 import {
 	date,
+	pgEnum,
 	pgTable,
 	primaryKey,
 	text,
 	timestamp,
 	uuid,
+	varchar,
 } from "drizzle-orm/pg-core";
+
+export const branchEnum = pgEnum("branch", ["JP", "EN", "ID", "DEV_IS"]);
 
 // --- タレント情報 ---
 export const talents = pgTable("talents", {
 	id: uuid("id").defaultRandom().primaryKey(),
-	name: text("name").notNull(),
+	slug: varchar("slug", { length: 64 }).notNull().unique(),
+	displayName: text("display_name").notNull(),
 	generation: text("generation").notNull(),
 	imageUrl: text("image_url"), // Vercel Blob URL
+	branch: branchEnum("branch").notNull(),
+	youtubeChannelId: varchar("youtube_channel_id", { length: 50 }).notNull(),
 	createdAt: timestamp("created_at").defaultNow().notNull(),
+	updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
 // --- 楽曲情報 ---
@@ -26,6 +34,7 @@ export const songs = pgTable("songs", {
 	jacketUrl: text("jacket_url"), // Vercel Blob URL
 	type: text("type").default("original"), // original / cover
 	createdAt: timestamp("created_at").defaultNow().notNull(),
+	updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
 // --- 中間テーブル: 誰がどの曲を歌っているか ---

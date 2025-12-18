@@ -22,8 +22,9 @@ export default async function TalentsPage() {
 							{talent.imageUrl ? (
 								<Image
 									src={talent.imageUrl}
-									alt={talent.name}
+									alt={talent.displayName}
 									fill
+									sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 									className="object-cover"
 								/>
 							) : (
@@ -33,7 +34,9 @@ export default async function TalentsPage() {
 							)}
 						</div>
 
-						<h2 className="font-bold text-lg text-gray-900">{talent.name}</h2>
+						<h2 className="font-bold text-lg text-gray-900">
+							{talent.displayName}
+						</h2>
 						<p className="text-sm text-gray-500">{talent.generation}</p>
 					</Link>
 				))}
