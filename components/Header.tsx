@@ -15,6 +15,9 @@ export function Header() {
 				{/* ナビゲーションメニュー */}
 				<nav className="hidden md:flex items-center gap-6 text-sm font-medium text-gray-600">
 					<Link href="/" className="hover:text-blue-500 transition-colors">
+						Top
+					</Link>
+					<Link href="/songs" className="hover:text-blue-500 transition-colors">
 						Songs
 					</Link>
 					<Link
@@ -29,14 +32,14 @@ export function Header() {
 				</nav>
 
 				{/* 右側のボタンエリア (将来的にログインボタンなどを配置) */}
-				<div className="flex items-center gap-4">
+				{/* <div className="flex items-center gap-4">
 					<Link
 						href="/admin"
 						className="text-xs font-bold bg-gray-900 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition-colors"
 					>
 						Admin
 					</Link>
-				</div>
+				</div> */}
 			</div>
 		</header>
 	);
