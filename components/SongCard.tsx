@@ -18,9 +18,10 @@ export type SongWithTalents = {
 interface SongCardProps {
 	song: SongWithTalents;
 	highlightTalentId?: string;
+	priority?: boolean;
 }
 
-export function SongCard({ song, highlightTalentId }: SongCardProps) {
+export function SongCard({ song, highlightTalentId, priority }: SongCardProps) {
 	return (
 		<Link
 			href={`/songs/${song.id}`}
@@ -32,6 +33,7 @@ export function SongCard({ song, highlightTalentId }: SongCardProps) {
 						src={song.jacketUrl}
 						alt={song.title}
 						fill
+						priority={priority}
 						sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 						className="object-cover group-hover:scale-105 transition-transform duration-300"
 					/>

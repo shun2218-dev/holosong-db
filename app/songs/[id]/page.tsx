@@ -114,6 +114,7 @@ export default async function SongDetailPage({ params }: PageProps) {
 												src={talent.imageUrl}
 												alt={talent.displayName}
 												fill
+												sizes="(max-width: 768px) 128px, 160px"
 												className="object-cover"
 											/>
 										</div>
