@@ -1,10 +1,10 @@
 import { eq } from "drizzle-orm";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { getTalentSongs } from "@/app/actions"; // 作成したAction
 import { SongList } from "@/components/SongList"; // 作成したList
 import { db } from "@/db";
 import { talents } from "@/db/schema";
+import { getTalentSongs } from "./actions"; // 作成したAction
 
 interface PageProps {
 	params: Promise<{ id: string }>;

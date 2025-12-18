@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,6 +20,7 @@ export default function RootLayout({
 	return (
 		<html lang="ja">
 			<body className={`${inter.className} min-h-screen flex flex-col`}>
+				<ScrollToTop />
 				<Header />
 				<main className="flex-1 w-full max-w-7xl mx-auto px-4 py-8">
 					{children}
