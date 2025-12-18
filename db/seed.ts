@@ -13,8 +13,11 @@ async function main() {
 	const [suisei] = await db
 		.insert(talents)
 		.values({
-			name: "星街すいせい",
+			displayName: "星街すいせい",
+			slug: "hoshimachi-suisei",
+			branch: "JP",
 			generation: "0期生",
+			youtubeChannelId: "UC5CwaMl1eIgY8h02uZw7u8A",
 			imageUrl:
 				"https://hololive.hololivepro.com/wp-content/uploads/2020/06/Hoshimachi-Suisei_list_thumb.png",
 		})
@@ -23,7 +26,10 @@ async function main() {
 	const [marine] = await db
 		.insert(talents)
 		.values({
-			name: "宝鐘マリン",
+			displayName: "宝鐘マリン",
+			slug: "houshou-marine",
+			branch: "JP",
+			youtubeChannelId: "UCCzUftO8KOVkV4wQG1vkUvg",
 			generation: "3期生",
 			imageUrl:
 				"https://hololive.hololivepro.com/wp-content/uploads/2020/06/Houshou-Marine_list_thumb.png",
