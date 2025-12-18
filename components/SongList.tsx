@@ -56,11 +56,12 @@ export function SongList({
 	return (
 		<>
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-				{songs.map((song) => (
+				{songs.map((song, index) => (
 					<SongCard
 						key={song.id}
 						song={song}
 						highlightTalentId={highlightTalentId}
+						priority={index < 6}
 					/>
 				))}
 			</div>
