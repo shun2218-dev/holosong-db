@@ -118,7 +118,7 @@ export default async function EditSongPage({ params }: PageProps) {
 					>
 						{allTalents.map((t) => (
 							<option key={t.id} value={t.id}>
-								{t.name} ({t.generation})
+								{t.displayName} ({t.generation})
 							</option>
 						))}
 					</select>
