@@ -4,12 +4,12 @@
 // YouTube, Vercel Blob, Google Fontsなどを許可
 const ContentSecurityPolicy = `
   default-src 'self';
-  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.youtube.com https://s.ytimg.com;
+  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.youtube.com https://s.ytimg.com https://static.cloudflareinsights.com;
   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
   img-src 'self' blob: data: https://*.public.blob.vercel-storage.com https://img.youtube.com https://i.ytimg.com;
   font-src 'self' https://fonts.gstatic.com;
   frame-src 'self' https://www.youtube.com;
-  connect-src 'self' https://vitals.vercel-insights.com;
+  connect-src 'self' https://vitals.vercel-insights.com https://cloudflareinsights.com;
   frame-ancestors 'none';
   upgrade-insecure-requests;
 `;
