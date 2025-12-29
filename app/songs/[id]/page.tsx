@@ -31,7 +31,8 @@ export default async function SongDetailPage({ params }: PageProps) {
 
 	const youtubeId = getYoutubeId(song.youtubeUrl);
 
-	const jsonLd = {
+	// 楽曲情報のJSON-LD定義
+	const songJsonLd = {
 		"@context": "https://schema.org",
 		"@type": "MusicRecording",
 		name: song.title,
@@ -162,7 +163,7 @@ export default async function SongDetailPage({ params }: PageProps) {
 			</div>
 			<script
 				type="application/ld+json"
-				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(songJsonLd) }}
 			/>
 		</section>
 	);
