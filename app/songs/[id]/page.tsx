@@ -59,6 +59,32 @@ export default async function SongDetailPage({ params }: PageProps) {
 		},
 	};
 
+	// パンくずリストのJSON-LD定義
+	const breadcrumbJsonLd = {
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				position: 1,
+				name: "TOP",
+				item: "https://holosongdb.com",
+			},
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: "Songs",
+				item: "https://holosongdb.com/songs",
+			},
+			{
+				"@type": "ListItem",
+				position: 3,
+				name: song.title,
+				item: `https://holosongdb.com/songs/${song.id}`,
+			},
+		],
+	};
+
 	return (
 		<section className="max-w-4xl mx-auto pb-10">
 			{/* 戻るボタン */}
@@ -164,6 +190,10 @@ export default async function SongDetailPage({ params }: PageProps) {
 			<script
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(songJsonLd) }}
+			/>
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
 			/>
 		</section>
 	);
