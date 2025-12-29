@@ -89,7 +89,10 @@ export default async function SongDetailPage({ params }: PageProps) {
 	return (
 		<section className="max-w-4xl mx-auto pb-10">
 			{/* 戻るボタン */}
-			<BackButton className="my-6 flex text-blue-500 hover:underline">
+			<BackButton
+				className="my-6 flex text-blue-500 hover:underline"
+				fallbackPath="/songs"
+			>
 				Back to List
 			</BackButton>
 
