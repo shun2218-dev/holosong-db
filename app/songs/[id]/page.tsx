@@ -7,7 +7,7 @@ import { songs } from "@/db/schema";
 import { getYoutubeId } from "@/lib/utils";
 
 interface PageProps {
-	params: Promise<{ id: string }>; // Next.js 15/16ではparamsはPromise型になります
+	params: Promise<{ id: string }>;
 }
 
 export default async function SongDetailPage({ params }: PageProps) {
@@ -31,8 +31,35 @@ export default async function SongDetailPage({ params }: PageProps) {
 
 	const youtubeId = getYoutubeId(song.youtubeUrl);
 
+	const jsonLd = {
+		"@context": "https://schema.org",
+		"@type": "MusicRecording",
+		name: song.title,
+		byArtist:
+			song.talents.length > 1
+				? song.talents.map((songTalent) => ({
+						"@type": "MusicGroup",
+						name: songTalent.talent.displayName,
+						url: `https://holosongdb.com/talents/${songTalent.talentId}`,
+					}))
+				: {
+						"@type": "Person",
+						name: song.talents[0].talent.displayName,
+						url: `https://holosongdb.com/talents/${song.talents[0].talentId}`,
+					},
+		url: `https://holosongdb.com/songs/${song.id}`,
+		// 動画がある場合
+		video: {
+			"@type": "VideoObject",
+			name: song.title,
+			uploadDate: song.releaseDate,
+			thumbnailUrl: `${song.jacketUrl}`,
+			contentUrl: `${song.youtubeUrl}`,
+		},
+	};
+
 	return (
-		<div className="max-w-4xl mx-auto pb-10">
+		<section className="max-w-4xl mx-auto pb-10">
 			{/* 戻るボタン */}
 			<Link
 				href="/"
@@ -133,6 +160,10 @@ export default async function SongDetailPage({ params }: PageProps) {
 					</div>
 				</div>
 			</div>
-		</div>
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+			/>
+		</section>
 	);
 }
