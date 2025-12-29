@@ -153,9 +153,9 @@ export default async function SongDetailPage({ params }: PageProps) {
 
 					{/* 参加タレント */}
 					<div>
-						<h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">
+						<div className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">
 							Performed by
-						</h3>
+						</div>
 						<div className="flex flex-wrap gap-4">
 							{song.talents.map(({ talent }) => (
 								<Link
