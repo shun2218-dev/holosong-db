@@ -73,6 +73,12 @@ const nextConfig = {
 						key: "Content-Security-Policy",
 						value: ContentSecurityPolicy.replace(/\n/g, ""),
 					},
+					// 7. Permissions-Policy
+					// 役割: カメラやマイク、位置情報などのブラウザ機能の使用許可を明示的に無効化
+					{
+						key: "Permissions-Policy",
+						value: "camera=(), microphone=(), geolocation=()",
+					},
 				],
 			},
 		];
