@@ -1,234 +1,216 @@
 {
-  "id": "99fcce56-e757-452d-87e2-5fbc1141c5b4",
-  "prevId": "6154b1c6-5d97-4765-8108-3fbd5b2011df",
-  "version": "7",
-  "dialect": "postgresql",
-  "tables": {
-    "public.song_talents": {
-      "name": "song_talents",
-      "schema": "",
-      "columns": {
-        "song_id": {
-          "name": "song_id",
-          "type": "uuid",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "talent_id": {
-          "name": "talent_id",
-          "type": "uuid",
-          "primaryKey": false,
-          "notNull": true
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {
-        "song_talents_song_id_songs_id_fk": {
-          "name": "song_talents_song_id_songs_id_fk",
-          "tableFrom": "song_talents",
-          "tableTo": "songs",
-          "columnsFrom": [
-            "song_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        },
-        "song_talents_talent_id_talents_id_fk": {
-          "name": "song_talents_talent_id_talents_id_fk",
-          "tableFrom": "song_talents",
-          "tableTo": "talents",
-          "columnsFrom": [
-            "talent_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {
-        "song_talents_song_id_talent_id_pk": {
-          "name": "song_talents_song_id_talent_id_pk",
-          "columns": [
-            "song_id",
-            "talent_id"
-          ]
-        }
-      },
-      "uniqueConstraints": {},
-      "policies": {},
-      "checkConstraints": {},
-      "isRLSEnabled": false
-    },
-    "public.songs": {
-      "name": "songs",
-      "schema": "",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "uuid",
-          "primaryKey": true,
-          "notNull": true,
-          "default": "gen_random_uuid()"
-        },
-        "title": {
-          "name": "title",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "release_date": {
-          "name": "release_date",
-          "type": "date",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "youtube_url": {
-          "name": "youtube_url",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "jacket_url": {
-          "name": "jacket_url",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "type": {
-          "name": "type",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "default": "'original'"
-        },
-        "created_at": {
-          "name": "created_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
-        },
-        "updated_at": {
-          "name": "updated_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
-      "policies": {},
-      "checkConstraints": {},
-      "isRLSEnabled": false
-    },
-    "public.talents": {
-      "name": "talents",
-      "schema": "",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "uuid",
-          "primaryKey": true,
-          "notNull": true,
-          "default": "gen_random_uuid()"
-        },
-        "slug": {
-          "name": "slug",
-          "type": "varchar(64)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "display_name": {
-          "name": "display_name",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "generation": {
-          "name": "generation",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "image_url": {
-          "name": "image_url",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "branch": {
-          "name": "branch",
-          "type": "branch",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "youtube_channel_id": {
-          "name": "youtube_channel_id",
-          "type": "varchar(50)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "created_at": {
-          "name": "created_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
-        },
-        "updated_at": {
-          "name": "updated_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {
-        "talents_slug_unique": {
-          "name": "talents_slug_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "slug"
-          ]
-        }
-      },
-      "policies": {},
-      "checkConstraints": {},
-      "isRLSEnabled": false
-    }
-  },
-  "enums": {
-    "public.branch": {
-      "name": "branch",
-      "schema": "public",
-      "values": [
-        "JP",
-        "EN",
-        "ID",
-        "DEV_IS"
-      ]
-    }
-  },
-  "schemas": {},
-  "sequences": {},
-  "roles": {},
-  "policies": {},
-  "views": {},
-  "_meta": {
-    "columns": {},
-    "schemas": {},
-    "tables": {}
-  }
+	"id": "99fcce56-e757-452d-87e2-5fbc1141c5b4",
+	"prevId": "6154b1c6-5d97-4765-8108-3fbd5b2011df",
+	"version": "7",
+	"dialect": "postgresql",
+	"tables": {
+		"public.song_talents": {
+			"name": "song_talents",
+			"schema": "",
+			"columns": {
+				"song_id": {
+					"name": "song_id",
+					"type": "uuid",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"talent_id": {
+					"name": "talent_id",
+					"type": "uuid",
+					"primaryKey": false,
+					"notNull": true
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {
+				"song_talents_song_id_songs_id_fk": {
+					"name": "song_talents_song_id_songs_id_fk",
+					"tableFrom": "song_talents",
+					"tableTo": "songs",
+					"columnsFrom": ["song_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				},
+				"song_talents_talent_id_talents_id_fk": {
+					"name": "song_talents_talent_id_talents_id_fk",
+					"tableFrom": "song_talents",
+					"tableTo": "talents",
+					"columnsFrom": ["talent_id"],
+					"columnsTo": ["id"],
+					"onDelete": "cascade",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {
+				"song_talents_song_id_talent_id_pk": {
+					"name": "song_talents_song_id_talent_id_pk",
+					"columns": ["song_id", "talent_id"]
+				}
+			},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.songs": {
+			"name": "songs",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "uuid",
+					"primaryKey": true,
+					"notNull": true,
+					"default": "gen_random_uuid()"
+				},
+				"title": {
+					"name": "title",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"release_date": {
+					"name": "release_date",
+					"type": "date",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"youtube_url": {
+					"name": "youtube_url",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"jacket_url": {
+					"name": "jacket_url",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"type": {
+					"name": "type",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false,
+					"default": "'original'"
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		},
+		"public.talents": {
+			"name": "talents",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "uuid",
+					"primaryKey": true,
+					"notNull": true,
+					"default": "gen_random_uuid()"
+				},
+				"slug": {
+					"name": "slug",
+					"type": "varchar(64)",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"display_name": {
+					"name": "display_name",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"generation": {
+					"name": "generation",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"image_url": {
+					"name": "image_url",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"branch": {
+					"name": "branch",
+					"type": "branch",
+					"typeSchema": "public",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"youtube_channel_id": {
+					"name": "youtube_channel_id",
+					"type": "varchar(50)",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"created_at": {
+					"name": "created_at",
+					"type": "timestamp",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				},
+				"updated_at": {
+					"name": "updated_at",
+					"type": "timestamp",
+					"primaryKey": false,
+					"notNull": true,
+					"default": "now()"
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {
+				"talents_slug_unique": {
+					"name": "talents_slug_unique",
+					"nullsNotDistinct": false,
+					"columns": ["slug"]
+				}
+			},
+			"policies": {},
+			"checkConstraints": {},
+			"isRLSEnabled": false
+		}
+	},
+	"enums": {
+		"public.branch": {
+			"name": "branch",
+			"schema": "public",
+			"values": ["JP", "EN", "ID", "DEV_IS"]
+		}
+	},
+	"schemas": {},
+	"sequences": {},
+	"roles": {},
+	"policies": {},
+	"views": {},
+	"_meta": {
+		"columns": {},
+		"schemas": {},
+		"tables": {}
+	}
 }
