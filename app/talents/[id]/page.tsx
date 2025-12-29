@@ -1,10 +1,10 @@
 import { eq } from "drizzle-orm";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { SongList } from "@/components/SongList"; // 作成したList
+import { SongList } from "@/components/SongList";
 import { db } from "@/db";
 import { talents } from "@/db/schema";
-import { getTalentSongs } from "./actions"; // 作成したAction
+import { getTalentSongs } from "./actions";
 
 interface PageProps {
 	params: Promise<{ id: string }>;
@@ -29,6 +29,19 @@ export default async function TalentDetailPage({ params }: PageProps) {
 	const fetchMoreTalentSongs = async (page: number) => {
 		"use server";
 		return getTalentSongs(id, page);
+	};
+
+	// タレント情報のJSON-LD定義
+	const talentJsonLd = {
+		"@context": "https://schema.org",
+		"@type": "Person",
+		name: talent.displayName,
+		image: talent.imageUrl,
+		description: `Hololive Production - ${talent.generation}`,
+		url: `https://holosongdb.com/talents/${talent.id}`,
+		sameAs: [
+			`https://www.youtube.com/channel/${talent.youtubeChannelId}`,
+		].filter(Boolean),
 	};
 
 	// パンくずリストのJSON-LD定義
@@ -91,6 +104,10 @@ export default async function TalentDetailPage({ params }: PageProps) {
 				initialSongs={initialSongs}
 				fetcher={fetchMoreTalentSongs}
 				highlightTalentId={id}
+			/>
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(talentJsonLd) }}
 			/>
 			<script
 				type="application/ld+json"
