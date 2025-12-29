@@ -2,6 +2,7 @@ import { eq } from "drizzle-orm";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { BackButton } from "@/components/BackButton";
 import { db } from "@/db";
 import { songs } from "@/db/schema";
 import { getYoutubeId } from "@/lib/utils";
@@ -88,12 +89,12 @@ export default async function SongDetailPage({ params }: PageProps) {
 	return (
 		<section className="max-w-4xl mx-auto pb-10">
 			{/* 戻るボタン */}
-			<Link
-				href="/"
-				className="inline-block mb-6 text-sm text-gray-500 hover:text-blue-500 transition-colors"
+			<BackButton
+				className="my-6 flex text-blue-500 hover:underline"
+				fallbackPath="/songs"
 			>
-				← Back to list
-			</Link>
+				Back to List
+			</BackButton>
 
 			<div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
 				{/* YouTube埋め込みエリア */}
